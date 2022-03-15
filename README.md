@@ -10,5 +10,4 @@ Code Requirement:
   3. Dynamic memory management
   4. File input/output (e.g., for loading/saving game status)
   5. Program codes in multiple files
-  6. Proper indentation and naming styles
-  7. In-code documentation
+
