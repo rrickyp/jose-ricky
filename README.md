@@ -22,5 +22,5 @@ Code Requirement:
   2. Data structures for storing game status --> we store each player and dealer's card values.
   3. Dynamic memory management --> the numbers of cards depend on the player's actions.
   4. File input/output (e.g., for loading/saving game status) --> every time the game starts, the records of wins and loses of the player will be displayed.
-  5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, WhoIsTheWinner, CardsValue.
+  5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, WhoIsTheWinner, CardsValue, HitOrStandDealer.
   
