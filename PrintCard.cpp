@@ -51,7 +51,7 @@ int main(){
     cout << "How many cards that the user inputted?" << endl;
     cin >> total_cards;
     cout << endl;
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < total_cards; i++){
         int temp = 0;
         cin >> temp;
         user_card[i] = temp;
