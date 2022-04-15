@@ -6,7 +6,7 @@ int main() {
   fin.open("ASCII-NERD.txt");
   string welcome;
   while (getline(fin, welcome)){
-    cout <<welcome<<endl;
+    cout << welcome <<endl;
 
   }
 }
