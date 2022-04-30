@@ -7,14 +7,29 @@ using namespace std;
 bool win_or_lose(vector <int> &user_card, vector <int> &dealer_card, int total_card_user, int total_card_dealer){
     int sum_user = 0, sum_dealer = 0;
     //count user's card
+    int temp;
+    bool has_A = false;
     for(int i = 0; i < total_card_user; i++){
-        sum_user += user_card[i] % 13 ;
+        temp += user_card[i] % 13 ;
+        if (temp == 12 || temp == 11){
+            sum_user += 10;
+        }
+        else{
+            sum_user += temp;
+        }
         // cout << sum_user << " ";
 
     }
     //count dealer's card
+    temp = 0;
     for(int j = 0; j < total_card_dealer; j++){
-        sum_dealer += dealer_card[j] % 13  ;
+        temp += dealer_card[j] % 13;
+        if (temp == 12 || temp == 11){
+            sum_dealer += 10;
+        }
+        else{
+            sum_dealer += temp;
+        }
         // cout << sum_dealer << " ";
     }
     // cout << sum_user << " " << sum_dealer << endl;
@@ -70,7 +85,7 @@ int main(){
     // win_or_lose(user_card, dealer_card, total_dealer_card, total_user_card);
 
     // only use the win_or_lose function in this file
-    
+
 
     return 0;
 }
