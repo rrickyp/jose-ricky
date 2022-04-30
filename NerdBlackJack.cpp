@@ -38,7 +38,7 @@ void initial_card(int player[5], int dealer[5], int usedCard[], int &length){ //
 
 }
 */
-void ShareCard(vector <int> &UsedCards, vector <int> &Cards, int numCards) {
+void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
   srand(time(NULL));
   int card = rand()%52;
   while (find(UsedCards.begin(), UsedCards.end(), card) != UsedCards.end()) {
@@ -57,6 +57,15 @@ void PrintCard(vector <int> cards) {
 void PrintCardDealer(vector <int> cards) {
   PrintCard(cards);
   cout << "#########"<<endl; // assume # as cards' back
+}
+bool HitOrStand() {
+  string ans;
+  cout <<"Hit or Stand?";
+  cin >>ans;
+  if (ans == "Hit") {
+    return true;
+  }
+  return false;
 }
 int main() {
   ifstream fin;
@@ -88,11 +97,70 @@ int main() {
    vector <int> UsedCards;
    vector <int> PlayerCards;
    vector <int> DealerCards;
-   ShareCard(UsedCards, PlayerCards, 2); //initialize card
-   ShareCard(UsedCards, DealerCards, 1); //initialize card
+   ShareCard(UsedCards, PlayerCards); //initialize card
+   ShareCard(UsedCards, PlayerCards); //initialize card
+   ShareCard(UsedCards, DealerCards); //initialize card
    PrintCard(PlayerCards);
    PrintCardDealer(DealerCards);
-   ShareCard(UsedCards, PlayerCards, 1);
+   bool ans;
+   ans = HitOrStand();
+   fin.open("topspeed.txt");
+   if (fin.fail()) {
+     cout <<"File error"<<endl;
+     exit(1);
+   }
+   string temp;
+   fin>>temp;
+   fin.close();
+   double Topspeed = atof(temp.c_str());
+   double BestTime;
+   while (ans) {
+     ShareCard(UsedCards, PlayerCards);
+     //MathQuestion();
+     if (MathQuestion()!=0) {
+       if (MathQuestion() < Topspeed) {
+         BestTime = MathQuestion();
+         cout <<"Wow, You beat the topspeed"<<endl;
+       }
+       else if (MathQuestion() > Topspeed) {
+         cout << "You are slow, the top speed is" << Topspeed<<"s"<<endl;
+       }
+       PrintCard(PlayerCards);
+       if (isBlackJack(DealerCards)) {
+         cout <<"Congrats, You got BlackJack"<<endl;
+         cout <<"You are the winner"<<endl;
+         return 0;
+       }
+       if (isBust(PlayerCards)) {
+         cout <<"You lose :(" <<endl;
+         cout << "The winner is Dealer"<<endl;
+         return 0;
+       }
+       ans = HitOrStand();
+       continue;
+     }
+     else {
+       cout <<"You lose :("<<endl;
+     }
+   }
+   DealerMove(UsedCards, DealerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
+   if (WhoIsTheWinner(PlayerCards, DealerCards)) {   // assume true if Player wins
+     cout <<"Congrats, You won the game"<<endl;
+   }
+   else {
+     cout <<"You lose :("<<endl;
+     cout << "The winner is Dealer"<<endl;
+   }
+   if (Topspeed<BestTime) {
+   ofstream fout("Topspeed.txt");
+   if (fout.fail()) {
+     cout <<"Error in file opening"<<endl;
+     exit(1);
+   }
+   fout << BestTime;
+   fout.close();
+   }
+
   }
   else {
     cout <<"BYE BYE :)"<<endl;
