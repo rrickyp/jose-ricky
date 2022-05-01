@@ -17,6 +17,8 @@ void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
 void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <int> Playercards) {
   while(CardsValue(Dealercards) < CardsValue(Playercards)) {
     ShareCard(UsedCards, Dealercards);
+    sorted(Dealercards);
+    PrintCard(Dealercards);
   }
 }
 int CardsValue(vector <int> cards) {
