@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include "CardFeatures.h"
 using namespace std;
 
 /*
@@ -38,35 +39,6 @@ void initial_card(int player[5], int dealer[5], int usedCard[], int &length){ //
 
 }
 */
-void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
-  srand(time(NULL));
-  int card = rand()%52;
-  while (find(UsedCards.begin(), UsedCards.end(), card) != UsedCards.end()) {
-    card = rand()%52;
-  }
-  UsedCards.push_back(card);
-  Cards.push_back(card);
-}
-
-void PrintCard(vector <int> cards) {
-  for (int i= 0; i< cards.size(); i++) {
-    cout << cards[i]<<" ";
-  }
-  cout <<endl;
-}
-void PrintCardDealer(vector <int> cards) {
-  PrintCard(cards);
-  cout << "#########"<<endl; // assume # as cards' back
-}
-bool HitOrStand() {
-  string ans;
-  cout <<"Hit or Stand?";
-  cin >>ans;
-  if (ans == "Hit") {
-    return true;
-  }
-  return false;
-}
 int main() {
   ifstream fin;
   system("clear");
@@ -100,6 +72,7 @@ int main() {
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, DealerCards); //initialize card
+   sorted(PlayerCards);
    PrintCard(PlayerCards);
    PrintCardDealer(DealerCards);
    bool ans;
@@ -120,18 +93,19 @@ int main() {
      if (MathQuestion()!=0) {
        if (MathQuestion() < Topspeed) {
          BestTime = MathQuestion();
-         cout <<"Wow, You beat the topspeed"<<endl;
+         cout <<"Wow, You beat the top speed"<<endl;
        }
        else if (MathQuestion() > Topspeed) {
          cout << "You are slow, the top speed is" << Topspeed<<"s"<<endl;
        }
+       sorted(PlayerCards);
        PrintCard(PlayerCards);
-       if (isBlackJack(DealerCards)) {
+       if (CardsValue(DealerCards)) {
          cout <<"Congrats, You got BlackJack"<<endl;
          cout <<"You are the winner"<<endl;
          return 0;
        }
-       if (isBust(PlayerCards)) {
+       if (CardsValue(PlayerCards)) {
          cout <<"You lose :(" <<endl;
          cout << "The winner is Dealer"<<endl;
          return 0;
@@ -143,9 +117,12 @@ int main() {
        cout <<"You lose :("<<endl;
      }
    }
-   DealerMove(UsedCards, DealerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
-   if (WhoIsTheWinner(PlayerCards, DealerCards)) {   // assume true if Player wins
+   DealerMove(UsedCards, DealerCards, PlayerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
+   if (CardsValue(PlayerCards) > CardsValue(DealerCards)) {   // assume true if Player wins
      cout <<"Congrats, You won the game"<<endl;
+   }
+   else if (CardsValue(PlayerCards) == CardsValue(DealerCards)) {
+     cout <<"Game Tied, your cards have the same value as the dealer's"<<endl;
    }
    else {
      cout <<"You lose :("<<endl;
