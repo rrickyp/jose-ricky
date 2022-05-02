@@ -21,6 +21,9 @@ void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <in
     sorted(Dealercards);
     cout << "Dealer's Cards:"<<endl;
     PrintCard(Dealercards);
+    if (CardsValue(Dealercards) == 21) {
+      break;
+    }
     cout<<endl;
   }
 }
