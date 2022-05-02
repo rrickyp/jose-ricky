@@ -11,7 +11,7 @@ using namespace std;
 //     auto stop = high_resolution_clock::now();
 // } 
 
-double random_operator(int first, int second, int three){
+double random_operator(double first, double second, double three){
     int temp_rand = rand() % 10;
     if(temp_rand <= 3){
         cout << first << " + " << second << " + " << three<< endl;
@@ -40,9 +40,9 @@ double MathQuestion(){
     srand(time(NULL));
 
     //Initialize random 2 numbers
-    int rand_1 = rand() % 10 + 1;
-    int rand_2 = rand() % 10 + 1;
-    int rand_3 = rand() % 10 + 1;
+    double rand_1 = rand() % 10 + 1;
+    double rand_2 = rand() % 10 + 1;
+    double rand_3 = rand() % 10 + 1;
 
 
     double true_ans = random_operator(rand_1, rand_2, rand_3);
