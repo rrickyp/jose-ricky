@@ -95,9 +95,7 @@ int main() {
 
    double Topspeed = atof(temp.c_str());
    double BestTime;
-   while (ans) {
-     ShareCard(UsedCards, PlayerCards);
-     //MathQuestion();
+   while (true) {
      double Question = MathQuestion();
      if (Question!=0) {
        if (Question < Topspeed) {
@@ -107,6 +105,10 @@ int main() {
        else if (Question > Topspeed) {
          cout << "You are slow, the top speed is" << Topspeed<<"s"<<endl;
        }
+       if (!ans) {
+         break;
+       }
+       ShareCard(UsedCards, PlayerCards);
        sorted(PlayerCards);
        cout << "Your Cards:"<<endl;
        PrintCard(PlayerCards);
