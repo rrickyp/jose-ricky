@@ -34,7 +34,7 @@ int CardsValue(vector <int> cards) {
   }
   for (int i = cards.size()-1;i>=0;i--) {
     int value = cards[i]%13+1;
-    if (cards[i]%13 == 11 || cards[i]%13 == 12) {
+    if (cards[i]%13 == 10||cards[i]%13 == 11 || cards[i]%13 == 12) {
       value = 10;
     }
     else if (cards[i]%13 == 0) {
