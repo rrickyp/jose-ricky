@@ -24,6 +24,7 @@ double random_operator(int first, int second, int three){
     if( temp_rand > 5 && temp_rand <= 7){
         cout << "Remember, only input 1 decimal point" << endl;
         cout << first << " : " << second << endl;
+        cout <<first/second<<endl;
         return first / second;
     }
     if( temp_rand > 7 && temp_rand <= 9){

@@ -113,7 +113,7 @@ int main() {
        cout << "Your Cards:"<<endl;
        PrintCard(PlayerCards);
        cout<<endl;
-       if (CardsValue(DealerCards) == 21) {
+       if (CardsValue(PlayerCards) == 21) {
          cout <<"Congrats, You got BlackJack"<<endl;
          cout <<"You are the winner"<<endl;
          return 0;
