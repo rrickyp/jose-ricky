@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <ctime>
 #include "CardFeatures.h"
+#include <fstream>
 using namespace std;
 void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
   srand(time(NULL));
@@ -19,6 +20,7 @@ void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <in
     ShareCard(UsedCards, Dealercards);
     sorted(Dealercards);
     PrintCard(Dealercards);
+    cout<<endl;
   }
 }
 int CardsValue(vector <int> cards) {
@@ -30,7 +32,7 @@ int CardsValue(vector <int> cards) {
     }
   }
   for (int i = cards.size()-1;i>=0;i--) {
-    int value = cards[i]%13;
+    int value = cards[i]%13+1;
     if (cards[i]%13 == 11 || cards[i]%13 == 12) {
       value = 10;
     }
@@ -49,7 +51,7 @@ int CardsValue(vector <int> cards) {
     
 }
 bool cmpcard(const int & a, const int & b) {
-  if (b%13<a%13) {
+  if (b%13>a%13) {
     return true;
   }
   return false;
@@ -59,14 +61,36 @@ void sorted(vector <int> & cards) {
   sort(cards.begin(), cards.end(), cmpcard);
 }
 void PrintCard(vector <int> cards) {
-  for (int i= 0; i< cards.size(); i++) {
-    cout << cards[i]<<" ";
+    vector <ifstream> fin;
+    vector <string> txtFile;
+    string * line = new string[cards.size()];
+    for(int i = 0;i<cards.size();i++) {
+      txtFile.push_back("CardsPictures/"+ to_string(cards[i])+".txt");
+      fin[i].open(txtFile[i]);
+    }
+    for (int i = 0; i < cards.size();i++) {
+      for (int j = 0; j < cards.size();j++) {
+        line[i].push_back(" ");
+      }
+    }
+    for (int i = 0; i < cards.size();i++) {
+      for (int j = 0; j< cards.size();j++) {
+        getline(fin[i], line[i][j]);
+      }
+    }
+    for (int i = 0; i < cards.size();i++) {
+      for (int j = 0; j < cards.size();j++) {
+        cout << line[i][j];
+      }
+      cout <<endl;
+    }
+
   }
-  cout <<endl;
-}
+
 void PrintCardDealer(vector <int> cards) {
   PrintCard(cards);
-  cout << "#########"<<endl; // assume # as cards' back
+  ifstream fin;
+  fin.open("CardPictures/back.txt");
 }
 bool HitOrStand() {
   string ans;

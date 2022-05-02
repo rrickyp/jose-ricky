@@ -70,12 +70,15 @@ int main() {
    vector <int> UsedCards; 
    vector <int> PlayerCards;
    vector <int> DealerCards;
+   ifstream fin;
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, DealerCards); //initialize card
    sorted(PlayerCards);
    PrintCard(PlayerCards);
+   cout<<endl;
    PrintCardDealer(DealerCards);
+   cout<<endl;
    bool ans;
    ans = HitOrStand();
    ifstream fin;
@@ -87,21 +90,24 @@ int main() {
    string temp;
    fin>>temp;
    fin.close();
+
    double Topspeed = atof(temp.c_str());
    double BestTime;
    while (ans) {
      ShareCard(UsedCards, PlayerCards);
      //MathQuestion();
-     if (MathQuestion()!=0) {
-       if (MathQuestion() < Topspeed) {
-         BestTime = MathQuestion();
+     double Question = MathQuestion();
+     if (Question!=0) {
+       if (Question < Topspeed) {
+         BestTime = Question;
          cout <<"Wow, You beat the top speed"<<endl;
        }
-       else if (MathQuestion() > Topspeed) {
+       else if (Question > Topspeed) {
          cout << "You are slow, the top speed is" << Topspeed<<"s"<<endl;
        }
        sorted(PlayerCards);
        PrintCard(PlayerCards);
+       cout<<endl;
        if (CardsValue(DealerCards) == 21) {
          cout <<"Congrats, You got BlackJack"<<endl;
          cout <<"You are the winner"<<endl;
@@ -117,6 +123,7 @@ int main() {
      }
      else {
        cout <<"You lose :("<<endl;
+       return 0;
      }
    }
    DealerMove(UsedCards, DealerCards, PlayerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
