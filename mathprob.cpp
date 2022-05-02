@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <chrono>
 #include "mathprob.h"
+#include <cmath>
 using namespace std::chrono;
 using namespace std;
 
@@ -24,7 +25,10 @@ double random_operator(double first, double second, double three){
     if( temp_rand > 5 && temp_rand <= 7){
         cout << "Remember, only input 1 decimal point" << endl;
         cout << first << " : " << second << endl;
-        cout <<first/second<<endl;
+        cout <<"Befol " <<first / second<<endl;
+        first = ceil(first * 10.0) / 10.0;
+        second = ceil(second * 10.0) / 10.0;
+        cout << "After "<<first / second<<endl;
         return first / second;
     }
     if( temp_rand > 7 && temp_rand <= 9){
@@ -43,8 +47,7 @@ double MathQuestion(){
     double rand_1 = rand() % 10 + 1;
     double rand_2 = rand() % 10 + 1;
     double rand_3 = rand() % 10 + 1;
-
-
+    //generating the true answer
     double true_ans = random_operator(rand_1, rand_2, rand_3);
     double user_answer;
     auto start = high_resolution_clock::now();
