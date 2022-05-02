@@ -26,7 +26,8 @@ int main() {
   cout << "ARE YOU READY TO PLAY?? (Y/N): ";
   char ans;
   cin >> ans;
-  if ((ans == 'Y')||(ans == 'y')) {
+  int sign = 0;
+  while ((ans == 'Y')||(ans == 'y')) {
    vector <int> UsedCards; 
    vector <int> PlayerCards;
    vector <int> DealerCards;
@@ -41,8 +42,8 @@ int main() {
    cout <<"Dealer's Cards:"<<endl;
    PrintCard(DealerCards);
    cout<<endl;
-   bool ans;
-   ans = HitOrStand();
+   bool answer;
+   answer = HitOrStand();
    ifstream fin;
    fin.open("topspeed.txt");
    if (fin.fail()) {
@@ -65,7 +66,7 @@ int main() {
        else if (Question > Topspeed) {
          cout << "You are slow, the top speed is " << Topspeed<<"s"<<endl;
        }
-       if (!ans) {
+       if (!answer) {
          break;
        }
        ShareCard(UsedCards, PlayerCards);
@@ -76,20 +77,28 @@ int main() {
        if (CardsValue(PlayerCards) == 21) {
          cout <<"Congrats, You got BlackJack"<<endl;
          cout <<"You are the winner"<<endl;
-         return 0;
+         sign = 1;
+         break;
        }
        else if (CardsValue(PlayerCards) > 21) {
          cout <<"You lose :(" <<endl;
          cout << "The winner is Dealer"<<endl;
-         return 0;
+         sign = 1;
+         break;
        }
-       ans = HitOrStand();
-       continue;
+       answer = HitOrStand();
+       break;
      }
      else {
        cout <<"You lose :("<<endl;
-       return 0;
+       sign = 1;
+       break;
      }
+   }
+   if (sign == 1) {
+     cout << "Do you want to play again? (Y/N): ";
+     cin >> ans;
+     continue;
    }
    DealerCards.pop_back();
    DealerMove(UsedCards, DealerCards, PlayerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
@@ -112,10 +121,10 @@ int main() {
    fout << BestTime;
    fout.close();
    }
-
+  cout << "Do you want to play again? (Y/N): ";
+  cin >>ans;
   }
-  else {
-    cout <<"BYE BYE :)"<<endl;
-    return 0;
-  }
+  cout <<"BYE BYE :)"<<endl;
+  return 0;
+  
 }

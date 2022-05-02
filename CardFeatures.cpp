@@ -111,5 +111,6 @@ bool HitOrStand() {
   if (ans == "Hit") {
     return true;
   }
+  cout << "NANI";
   return false;
 }
