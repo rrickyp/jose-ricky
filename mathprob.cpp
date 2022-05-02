@@ -22,18 +22,6 @@ double random_operator(double first, double second, double three){
         cout << first << " - " << second << " - " << three<< endl;
         return first - second - three;
     }
-    if( temp_rand > 5 && temp_rand <= 7){
-        cout << "Remember, only input 1 decimal point" << endl;
-        cout << first << " : " << second << endl;
-<<<<<<< HEAD
-=======
-        cout <<"Befol " <<first / second<<endl;
-        first = ceil(first * 10.0) / 10.0;
-        second = ceil(second * 10.0) / 10.0;
-        cout << "After "<<first / second<<endl;
->>>>>>> 1a509f80d6b39d76d575de73def080ae23b17de0
-        return first / second;
-    }
     if( temp_rand > 7 && temp_rand <= 9){
         cout << first << " * " << second << " * " << three << endl;
         return first * second * three;
