@@ -11,7 +11,7 @@ using namespace std;
 //     auto stop = high_resolution_clock::now();
 // } 
 
-bool random_operator(int first, int second, int three){
+double random_operator(int first, int second, int three){
     int temp_rand = rand() % 10;
     if(temp_rand <= 3){
         cout << first << " + " << second << " + " << three<< endl;
@@ -44,7 +44,7 @@ double MathQuestion(){
     int rand_3 = rand() % 10 + 1;
 
 
-    int true_ans = random_operator(rand_1, rand_2, rand_3);
+    double true_ans = random_operator(rand_1, rand_2, rand_3);
     int user_answer;
     auto start = high_resolution_clock::now();
     cin >> user_answer;
@@ -61,5 +61,4 @@ double MathQuestion(){
         cout << "User Lost" << endl;
         return 0;
     }
-
 }

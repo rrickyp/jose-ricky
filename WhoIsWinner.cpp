@@ -18,7 +18,6 @@ bool win_or_lose(vector <int> &user_card, vector <int> &dealer_card, int total_c
             sum_user += temp;
         }
         // cout << sum_user << " ";
-
     }
     //count dealer's card
     temp = 0;
