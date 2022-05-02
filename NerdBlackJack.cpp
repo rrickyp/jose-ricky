@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include "CardFeatures.h"
+#include "mathprob.h"
 using namespace std;
 
 /*
@@ -66,7 +67,7 @@ int main() {
     //PrintCard(PlayerCards, playerCards_length);
     //PrintCard(DealerCards, 1); // inside of PrintCard , if length == 1, print the card and the closed card.
     */
-   vector <int> UsedCards;
+   vector <int> UsedCards; 
    vector <int> PlayerCards;
    vector <int> DealerCards;
    ShareCard(UsedCards, PlayerCards); //initialize card
@@ -77,6 +78,7 @@ int main() {
    PrintCardDealer(DealerCards);
    bool ans;
    ans = HitOrStand();
+   ifstream fin;
    fin.open("topspeed.txt");
    if (fin.fail()) {
      cout <<"File error"<<endl;
@@ -100,12 +102,12 @@ int main() {
        }
        sorted(PlayerCards);
        PrintCard(PlayerCards);
-       if (CardsValue(DealerCards)) {
+       if (CardsValue(DealerCards) == 21) {
          cout <<"Congrats, You got BlackJack"<<endl;
          cout <<"You are the winner"<<endl;
          return 0;
        }
-       if (CardsValue(PlayerCards)) {
+       else if (CardsValue(PlayerCards) > 21) {
          cout <<"You lose :(" <<endl;
          cout << "The winner is Dealer"<<endl;
          return 0;

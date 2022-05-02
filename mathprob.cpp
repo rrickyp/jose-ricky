@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <chrono>
+#include "mathprob.h"
 using namespace std::chrono;
 using namespace std;
 
@@ -8,7 +9,7 @@ using namespace std;
 //     auto start = high_resolution_clock::now();
 
 //     auto stop = high_resolution_clock::now();
-// }
+// } 
 
 bool random_operator(int first, int second, int three){
     int temp_rand = rand() % 10;
@@ -61,10 +62,4 @@ double MathQuestion(){
         return 0;
     }
 
-}
-
-int main(){
-    MathQuestion();
-
-    return 0;
 }
