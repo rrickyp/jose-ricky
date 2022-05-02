@@ -5,10 +5,10 @@ CardFeatures.o: CardFeatures.cpp CardFeatures.h
 	g++ $(FLAGS) -c $<
 NerdBlackJack.o: NerdBlackJack.cpp mathprob.h CardFeatures.h
 	g++ $(FLAGS) -c $<
-game: NerdBlackJack.o CardFeatures.o mathprob.o
+gameset: NerdBlackJack.o CardFeatures.o mathprob.o
 	g++ $(FLAGS) $^ -o $@
-gameset: game
-	./game
+game: gameset
+	./gameset
 clean:
 	rm -f game NerdBlackJack.o CardFeatures.o mathprob.o
 .PHONY: clean tar
