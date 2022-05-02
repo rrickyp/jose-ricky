@@ -70,14 +70,16 @@ int main() {
    vector <int> UsedCards; 
    vector <int> PlayerCards;
    vector <int> DealerCards;
-   ifstream fin;
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, PlayerCards); //initialize card
    ShareCard(UsedCards, DealerCards); //initialize card
    sorted(PlayerCards);
+   DealerCards.push_back(-1);
+   cout <<"Your Cards:"<<endl;
    PrintCard(PlayerCards);
    cout<<endl;
-   PrintCardDealer(DealerCards);
+   cout <<"Dealer's Cards:"<<endl;
+   PrintCard(DealerCards);
    cout<<endl;
    bool ans;
    ans = HitOrStand();

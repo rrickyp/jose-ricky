@@ -61,5 +61,4 @@ double MathQuestion(){
         cout << "User Lost" << endl;
         return 0;
     }
-
 }

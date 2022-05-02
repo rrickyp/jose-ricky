@@ -61,37 +61,45 @@ void sorted(vector <int> & cards) {
   sort(cards.begin(), cards.end(), cmpcard);
 }
 void PrintCard(vector <int> cards) {
-    vector <ifstream> fin;
-    vector <string> txtFile;
-    string * line = new string[cards.size()];
-    for(int i = 0;i<cards.size();i++) {
-      txtFile.push_back("CardsPictures/"+ to_string(cards[i])+".txt");
+  vector <ifstream> fin;
+  vector <string> txtFile;
+  string line;
+  for (int i = 0; i < cards.size(); i++) {
+    fin.push_back(0);
+  }
+  for(int i = 0;i<cards.size();i++) {
+    if(cards[i]==-1) {
+      txtFile.push_back("CardsPictures/back.txt");
       fin[i].open(txtFile[i]);
+      break;
     }
-    for (int i = 0; i < cards.size();i++) {
-      for (int j = 0; j < cards.size();j++) {
-        line[i].push_back(" ");
-      }
+    txtFile.push_back("CardsPictures/"+ to_string(cards[i])+".txt");
+    fin[i].open(txtFile[i]);
+  }
+  for (int i = 0; i < 6;i++) {
+    for (int j = 0; j < cards.size();j++) {
+      getline(fin[j], line);
+      cout <<line;
     }
-    for (int i = 0; i < cards.size();i++) {
-      for (int j = 0; j< cards.size();j++) {
-        getline(fin[i], line[i][j]);
-      }
-    }
-    for (int i = 0; i < cards.size();i++) {
-      for (int j = 0; j < cards.size();j++) {
-        cout << line[i][j];
-      }
-      cout <<endl;
-    }
+    cout <<endl;
 
   }
-
+  for (int i = 0; i < cards.size();i++) {
+    fin[i].close();
+  }
+  
+}
+/*
 void PrintCardDealer(vector <int> cards) {
   PrintCard(cards);
   ifstream fin;
-  fin.open("CardPictures/back.txt");
+  fin.open("CardsPictures/back.txt");
+  string line;
+  while (getline(fin, line)) {
+    cout <<line<<endl;
+  }
 }
+*/
 bool HitOrStand() {
   string ans;
   cout <<"Hit or Stand?";

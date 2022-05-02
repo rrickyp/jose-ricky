@@ -40,8 +40,8 @@ void print_cards(int user_card[5], int number_of_cards){
         else if(user_card[i] >= 39 && user_card[i] < 52) {
             cout << DIAMOND << " ";
         }
-        }
     }
+}
 
 
 int main(){
