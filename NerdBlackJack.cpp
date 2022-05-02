@@ -108,6 +108,7 @@ int main() {
          cout << "You are slow, the top speed is" << Topspeed<<"s"<<endl;
        }
        sorted(PlayerCards);
+       cout << "Your Cards:"<<endl;
        PrintCard(PlayerCards);
        cout<<endl;
        if (CardsValue(DealerCards) == 21) {
@@ -128,8 +129,9 @@ int main() {
        return 0;
      }
    }
+   DealerCards.pop_back();
    DealerMove(UsedCards, DealerCards, PlayerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
-   if (CardsValue(PlayerCards) > CardsValue(DealerCards)) {   // assume true if Player wins
+   if (CardsValue(PlayerCards) > CardsValue(DealerCards) || CardsValue(DealerCards)>21) {   // assume true if Player wins
      cout <<"Congrats, You won the game"<<endl;
    }
    else if (CardsValue(PlayerCards) == CardsValue(DealerCards)) {

@@ -19,6 +19,7 @@ void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <in
   while(CardsValue(Dealercards) < CardsValue(Playercards)) {
     ShareCard(UsedCards, Dealercards);
     sorted(Dealercards);
+    cout << "Dealer's Cards:"<<endl;
     PrintCard(Dealercards);
     cout<<endl;
   }
@@ -102,7 +103,7 @@ void PrintCardDealer(vector <int> cards) {
 */
 bool HitOrStand() {
   string ans;
-  cout <<"Hit or Stand?";
+  cout <<"Hit or Stand? ";
   cin >>ans;
   if (ans == "Hit") {
     return true;
