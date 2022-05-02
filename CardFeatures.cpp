@@ -16,7 +16,7 @@ void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
 }
 
 void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <int> Playercards) {
-  while(CardsValue(Dealercards) < CardsValue(Playercards)) {
+  while(CardsValue(Dealercards) < CardsValue(Playercards) || CardsValue(Dealercards)< 14) {
     ShareCard(UsedCards, Dealercards);
     sorted(Dealercards);
     cout << "Dealer's Cards:"<<endl;
