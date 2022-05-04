@@ -60,7 +60,7 @@ int main() {
     bool answer;
     answer = HitOrStand();
     ifstream fin;
-    fin.open("topspeed.txt");
+    fin.open("Topspeed.txt");
     if (fin.fail()) {
       cout <<"File error"<<endl;
       exit(1);
