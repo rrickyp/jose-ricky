@@ -17,7 +17,7 @@ int main() {
   system("clear");
   fin.open("ASCII-NERD.txt");
   string welcome;
-  
+
   while (getline(fin, welcome)){
     cout << welcome << endl;
   }
@@ -43,7 +43,7 @@ int main() {
     }
   int sign = 0;
   while ((ans == "y")) {
-    vector <int> UsedCards; 
+    vector <int> UsedCards;
     vector <int> PlayerCards;
     vector <int> DealerCards;
     ShareCard(UsedCards, PlayerCards); //initialize card
@@ -60,7 +60,7 @@ int main() {
     bool answer;
     answer = HitOrStand();
     ifstream fin;
-    fin.open("Topspeed.txt");
+    fin.open("topspeed.txt");
     if (fin.fail()) {
       cout <<"File error"<<endl;
       exit(1);
@@ -144,7 +144,7 @@ int main() {
     }
     system("sleep 2");
     if (Topspeed>BestTime) {
-      ofstream fout("Topspeed.txt");
+      ofstream fout("topspeed.txt");
       if (fout.fail()) {
         cout <<"Error in file opening"<<endl;
         exit(1);
@@ -173,5 +173,5 @@ int main() {
   }
   cout <<"BYE BYE :)"<<endl;
   return 0;
-  
+
 }
