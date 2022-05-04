@@ -21,6 +21,7 @@ void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <in
     sorted(Dealercards);
     cout << "Dealer's Cards:"<<endl;
     PrintCard(Dealercards);
+    system("sleep 1");
     if (CardsValue(Dealercards) == 21) {
       break;
     }
@@ -46,7 +47,7 @@ int CardsValue(vector <int> cards) {
     total = total + value;
   }
   for (int i = 0; i<AceCount;i++) {
-    if (total < 21) {
+    if (total <= 21) {
       break;
     }
     total = total -10;
@@ -108,9 +109,11 @@ bool HitOrStand() {
   string ans;
   cout <<"Hit or Stand? ";
   cin >>ans;
-  if (ans == "Hit") {
+  for_each(ans.begin(), ans.end(), [] (char &c) {
+    c = tolower(c);
+  });
+  if (ans == "hit") {
     return true;
   }
-  cout << "NANI";
   return false;
 }

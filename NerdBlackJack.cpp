@@ -10,6 +10,9 @@ using namespace std;
 
 
 int main() {
+  system("clear");
+  cout <<"To have the best experience, make your terminal full screen"<<endl;
+  system("sleep 2");
   ifstream fin;
   system("clear");
   fin.open("ASCII-NERD.txt");
@@ -17,12 +20,9 @@ int main() {
   while (getline(fin, welcome)){
     cout << welcome << endl;
     
-  //
   }
-  int start = (time(NULL));
-  while (time(NULL) != start+3) {
 
-  }
+  system("sleep 2");
   cout << "ARE YOU READY TO PLAY?? (Y/N): ";
   char ans;
   cin >> ans;
@@ -55,18 +55,15 @@ int main() {
    fin.close();
 
    double Topspeed = atof(temp.c_str());
-   double BestTime;
+   double BestTime = -1;
    while (true) {
      double Question = MathQuestion();
      if (Question!=0) {
        if (Question < Topspeed) {
          BestTime = Question;
-         cout <<"Wow, You beat the top speed"<<endl;
-       }
-       else if (Question > Topspeed) {
-         cout << "You are slow, the top speed is " << Topspeed<<"s"<<endl;
        }
        if (!answer) {
+         sign = 0;
          break;
        }
        ShareCard(UsedCards, PlayerCards);
@@ -74,36 +71,33 @@ int main() {
        cout << "Your Cards:"<<endl;
        PrintCard(PlayerCards);
        cout<<endl;
-       if (CardsValue(PlayerCards) == 21) {
-         cout <<"Congrats, You got BlackJack"<<endl;
-         cout <<"You are the winner"<<endl;
-         sign = 1;
-         break;
-       }
-       else if (CardsValue(PlayerCards) > 21) {
+       if (CardsValue(PlayerCards) > 21) {
+         system("sleep 1");
+         cout << "Your cards are bust"<<endl;
          cout <<"You lose :(" <<endl;
          cout << "The winner is Dealer"<<endl;
          sign = 1;
          break;
        }
        answer = HitOrStand();
-       break;
      }
      else {
+       cout << "Your calculation is wrong"<<endl;
        cout <<"You lose :("<<endl;
        sign = 1;
        break;
      }
    }
-   if (sign == 1) {
-     cout << "Do you want to play again? (Y/N): ";
-     cin >> ans;
-     continue;
-   }
+   if (sign == 0) {
    DealerCards.pop_back();
    DealerMove(UsedCards, DealerCards, PlayerCards); //inside DealerMove, there will be share card for the dealer, and print the cards
+   cout << "Your cards' value is "<<CardsValue(PlayerCards)<<endl;
+   cout << "Dealer's cards value is "<<CardsValue(DealerCards)<<endl;
    if (CardsValue(PlayerCards) > CardsValue(DealerCards) || CardsValue(DealerCards)>21) {   // assume true if Player wins
-     cout <<"Congrats, You won the game"<<endl;
+     if (CardsValue(PlayerCards) == 21) {
+       cout << "You got BlackJack"<<endl;
+     }
+     cout <<"Congrats!! You won the game"<<endl;
    }
    else if (CardsValue(PlayerCards) == CardsValue(DealerCards)) {
      cout <<"Game Tied, your cards have the same value as the dealer's"<<endl;
@@ -112,14 +106,29 @@ int main() {
      cout <<"You lose :("<<endl;
      cout << "The winner is Dealer"<<endl;
    }
-   if (Topspeed<BestTime) {
-   ofstream fout("Topspeed.txt");
-   if (fout.fail()) {
-     cout <<"Error in file opening"<<endl;
-     exit(1);
    }
-   fout << BestTime;
-   fout.close();
+   if (BestTime != -1) {
+     if (BestTime >= Topspeed) {
+       cout << "You are smart, but you are not fast enough!!"<<endl;
+       cout << "You have not beaten the best time"<<endl;
+       cout << "The best time is "<<Topspeed<<"s"<<endl;
+     }
+     else if (BestTime < Topspeed) {
+       cout << "Wow, you are so fast, you have beaten the best time"<<endl;
+       system("sleep 1");
+       cout << "Your best time is "<<BestTime<<"s, "<<Topspeed-BestTime<<"s faster than the best time"<<endl;
+
+     }
+   }
+   system("sleep 2");
+   if (Topspeed>BestTime) {
+     ofstream fout("Topspeed.txt");
+     if (fout.fail()) {
+       cout <<"Error in file opening"<<endl;
+       exit(1);
+     }
+     fout << BestTime;
+     fout.close();
    }
   cout << "Do you want to play again? (Y/N): ";
   cin >>ans;

@@ -49,11 +49,10 @@ double MathQuestion(){
     // double duration_double = double(duration);
     // if the user's answer 
     if(user_answer == true_ans){
-        cout << "User continue the game"<< endl;
+        cout << "Your answer is correct"<< endl;
         return duration_double;
     }
     else{
-        cout << "User Lost" << endl;
         return 0;
     }
 }
