@@ -1,0 +1,10 @@
+# Rules for The Game:
+
+1. Each participant attempts to beat the dealer by getting a count as close to 21 as possible, without going over 21.
+2. If the player opt to hit, and apparently the sum exceeds 21, the player would consequently lose the game.
+   the value of cards from 2 to 10 is equal to their face value, and the value of J,Q,K, has a value of 10. While A has a value
+   of either 1 or 11.
+3. For the aforementioned math questions in each actions, the player only had 2 attempts within 15 seconds to answer the
+   questions. If the player failed to do so, they would promptly lose the game.
+4. Only when the player opt "Stand" that the code reveal the dealer's card.
+5. If the dealer's card exceed 21, likewise the player promptly wins the game.

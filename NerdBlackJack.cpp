@@ -23,11 +23,26 @@ int main() {
   }
 
   system("sleep 2");
-  cout << "ARE YOU READY TO PLAY?? (Y/N): ";
-  char ans;
+  string ans = "test";
+  while(ans!="y" && ans != "n") {
+  cout << "ARE YOU READY TO PLAY?? (Y/N/RULES): ";
   cin >> ans;
+  for_each(ans.begin(), ans.end(), [] (char &c) {
+  c = tolower(c);
+  });
+  string rules;
+  ifstream fiin;
+  if (ans == "rules") {
+    fiin.open("Rules.txt");
+    while (getline(fiin, rules)) {
+      cout << rules<<endl;
+    }
+    cout <<endl;
+  }
+  fiin.close();
+  }
   int sign = 0;
-  while ((ans == 'Y')||(ans == 'y')) {
+  while ((ans == "y")) {
    vector <int> UsedCards; 
    vector <int> PlayerCards;
    vector <int> DealerCards;
@@ -55,11 +70,19 @@ int main() {
    fin.close();
 
    double Topspeed = atof(temp.c_str());
-   double BestTime = -1;
+   double BestTime = 10000;
    while (true) {
+     cout << "You have 15 seconds to complete the question !!"<<endl;
      double Question = MathQuestion();
      if (Question!=0) {
-       if (Question < Topspeed) {
+      if (Question >15) {
+        cout <<"You ran out of time ("<<Question<<"s)"<<endl;
+        cout <<"You lose :("<<endl;
+        cout <<"The winner is Dealer"<<endl;
+        sign = 1;
+        break;
+      }
+       if (Question < BestTime) {
          BestTime = Question;
        }
        if (!answer) {
@@ -107,7 +130,7 @@ int main() {
      cout << "The winner is Dealer"<<endl;
    }
    }
-   if (BestTime != -1) {
+   if (BestTime != 10000) {
      if (BestTime >= Topspeed) {
        cout << "You are smart, but you are not fast enough!!"<<endl;
        cout << "You have not beaten the best time"<<endl;
@@ -130,8 +153,24 @@ int main() {
      fout << BestTime;
      fout.close();
    }
-  cout << "Do you want to play again? (Y/N): ";
-  cin >>ans;
+   ans = "test";
+   while (ans!="y" && ans!= "n"){
+     ifstream fiin;
+     cout << "Do you want to play again? (Y/N/RULES): ";
+     cin >>ans;
+     for_each(ans.begin(), ans.end(), [] (char &c) {
+     c = tolower(c);
+     });
+     string rules;
+     if (ans == "rules") {
+       fiin.open("Rules.txt");
+       while(getline(fiin, rules)) {
+         cout <<rules<<endl;
+       }
+       cout <<endl;
+     }
+     fiin.close();
+   }
   }
   cout <<"BYE BYE :)"<<endl;
   return 0;
