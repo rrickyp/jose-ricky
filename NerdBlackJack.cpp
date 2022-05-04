@@ -132,14 +132,13 @@ int main() {
     }
     if (BestTime != 10000) {
       if (BestTime >= Topspeed) {
-        cout << "You are smart, but you are not fast enough!!"<<endl;
-        cout << "You have not beaten the best time"<<endl;
-        cout << "The best time is "<<Topspeed<<"s"<<endl;
+        cout << "You have not beaten the record"<<endl;
+        cout << "The record is "<<Topspeed<<"s"<<endl;
       }
       else if (BestTime < Topspeed) {
-        cout << "Wow, you are so fast, you have beaten the best time"<<endl;
+        cout << "Wow, you have set a new record"<<endl;
         system("sleep 1");
-        cout << "Your best time is "<<BestTime<<"s, "<<Topspeed-BestTime<<"s faster than the best time"<<endl;
+        cout << "Your record is "<<BestTime<<"s"<<endl;
 
       }
     }
