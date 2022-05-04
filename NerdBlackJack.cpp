@@ -17,9 +17,9 @@ int main() {
   system("clear");
   fin.open("ASCII-NERD.txt");
   string welcome;
+  
   while (getline(fin, welcome)){
     cout << welcome << endl;
-    
   }
 
   system("sleep 2");

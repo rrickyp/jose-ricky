@@ -18,9 +18,9 @@ Rules for The Game:
   6. If the dealer's card exceed 21, likewise the player promptly wins the game.
 
 Code Requirement:
-  1. Generation of random game sets or events --> we generate random cards for the player and dealer.
-  2. Data structures for storing game status --> we store each player and dealer's card values.
-  3. Dynamic memory management --> the numbers of cards depend on the player's actions.
-  4. File input/output (e.g., for loading/saving game status) --> every time the game starts, the records of wins and loses of the player will be displayed.
-  5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, WhoIsTheWinner, CardsValue, HitOrStandDealer.
+  1. Generation of random game sets or events --> we generate random cards for the player and dealer, as well as random mathematical equation.
+  2. Data structures for storing game status --> we store each player, and dealer's cards using vector.
+  3. Dynamic memory management --> we use vectors in storing cards, and calling cards from files.
+  4. File input/output (e.g., for loading/saving game status) --> every time the game starts, there is a file that kept track of the fastest time a user can answer.
+  5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, and CardFeatuers.cpp.
   
