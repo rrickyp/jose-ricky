@@ -66,31 +66,31 @@ void sorted(vector <int> & cards) {
   sort(cards.begin(), cards.end(), cmpcard);
 }
 void PrintCard(vector <int> cards) {
-  vector <ifstream> fin;
+  vector <ifstream*> fin;
   vector <string> txtFile;
   string line;
-  for (int i = 0; i < cards.size(); i++) {
-    fin.push_back(0);
-  }
+
   for(int i = 0;i<cards.size();i++) {
     if(cards[i]==-1) {
       txtFile.push_back("CardsPictures/back.txt");
-      fin[i].open(txtFile[i]);
       break;
     }
     txtFile.push_back("CardsPictures/"+ to_string(cards[i])+".txt");
-    fin[i].open(txtFile[i]);
+  }
+  for (int i = 0; i < cards.size();i++) {
+    ifstream * f = new ifstream(txtFile[i], ios::in);
+    fin.push_back(f);
   }
   for (int i = 0; i < 6;i++) {
     for (int j = 0; j < cards.size();j++) {
-      getline(fin[j], line);
+      getline(*fin[j], line);
       cout <<line;
     }
     cout <<endl;
 
   }
   for (int i = 0; i < cards.size();i++) {
-    fin[i].close();
+    fin[i]->close();
   }
   
 }
