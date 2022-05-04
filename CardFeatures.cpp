@@ -5,6 +5,8 @@
 #include "CardFeatures.h"
 #include <fstream>
 using namespace std;
+
+
 void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
   srand(time(NULL));
   int card = rand()%52;
