@@ -81,44 +81,37 @@ void PrintCard(vector <int> cards) {
       txtFile.push_back("CardsPictures/back.txt");
       break;
     }
-    // Created 
+    // pushing back txtFile's string as the address to files that is going to be printed later on
     txtFile.push_back("CardsPictures/" + to_string(cards[i]) + ".txt");
   }
-  for (int i = 0; i < cards.size();i++) {
-    ifstream * f = new ifstream(txtFile[i], ios::in);
+  // opening each txtFile in f and pushing it to the fin vector
+  for (int i = 0; i < cards.size(); i++) {
+    ifstream * f = new ifstream( txtFile[i], ios::in );
     fin.push_back(f);
   }
-  for (int i = 0; i < 6;i++) {
-    for (int j = 0; j < cards.size();j++) {
-      getline(*fin[j], line);
-      cout <<line;
+  // Printing first 6 lines on files inside fin variable address
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < cards.size(); j++) {
+      getline( *fin[j], line );
+      cout << line;
     }
-    cout <<endl;
-
+    cout << endl;
   }
+  // Closing every files in the fin address to avoid memory leak
   for (int i = 0; i < cards.size();i++) {
     fin[i]->close();
-  }
-  
+  } 
 }
-/*
-void PrintCardDealer(vector <int> cards) {
-  PrintCard(cards);
-  ifstream fin;
-  fin.open("CardsPictures/back.txt");
-  string line;
-  while (getline(fin, line)) {
-    cout <<line<<endl;
-  }
-}
-*/
+
 bool HitOrStand() {
   string ans;
-  cout <<"Hit or Stand? ";
-  cin >>ans;
+  cout << "Hit or Stand? ";
+  cin >> ans;
+  // inputting answer of users, and converting all of them to lowercase characters.
   for_each(ans.begin(), ans.end(), [] (char &c) {
     c = tolower(c);
   });
+  //  Setting while loop with true until the user input hits either "hit" or "stand".
   while( true ){
     if (ans == "hit") {
       return true;
