@@ -114,8 +114,12 @@ bool HitOrStand() {
   for_each(ans.begin(), ans.end(), [] (char &c) {
     c = tolower(c);
   });
-  if (ans == "hit") {
-    return true;
+  while( true ){
+    if (ans == "hit") {
+      return true;
+    }
+    else if( ans == "stand"){
+      return false;
+    }
   }
-  return false;
 }
