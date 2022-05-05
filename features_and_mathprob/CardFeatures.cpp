@@ -121,5 +121,7 @@ bool HitOrStand() {
     else if( ans == "stand"){
       return false;
     }
+    cout <<"Hit or Stand? ";
+    cin >> ans;
   }
 }
