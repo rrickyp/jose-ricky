@@ -10,37 +10,46 @@ using namespace std;
 
 
 int main() {
+  // Every beginning of the game, we clear the CLI.
   system("clear");
   cout <<"To have the best experience, make your terminal full screen"<<endl;
+  // Give the user time to change their terminal to full screen mode
   system("sleep 2");
-  ifstream fin;
   system("clear");
+  // Initializing fin, and printing "Welcome to Nerd Blackjack" ASCII
+  ifstream fin;
   fin.open("OtherData/ASCII-NERD.txt");
   string welcome;
-
   while (getline(fin, welcome)){
     cout << welcome << endl;
   }
 
   system("sleep 2");
+  // Initializing string ans to "test", so that it does not break the while loop.
+  // Inputting user's ans and transform it into lowercase number using for_each function and tolower.
   string ans = "test";
-  while(ans!="y" && ans != "n") {
+  while(ans != "y" && ans != "n") {
     cout << "ARE YOU READY TO PLAY?? (Y/N/RULES): ";
     cin >> ans;
     for_each(ans.begin(), ans.end(), [] (char &c) {
-    c = tolower(c);
+      c = tolower(c);
     });
+    // If the user input rules, then set of rules would be displayed for the user.
     string rules;
     ifstream fiin;
     if (ans == "rules") {
-      fiin.open("OtherData/Rules.txt");
-      while (getline(fiin, rules)) {
-        cout << rules<<endl;
+      fiin.open( "OtherData/Rules.txt" );
+      // Getting every line in the "OtherData/Rules.txt" file using getline function.
+      while ( getline(fiin, rules) ) {
+        cout << rules << endl;
       }
-      cout <<endl;
+      cout << endl;
     }
+    // Closing the opened file to avoid memory leaks
     fiin.close();
-    }
+  }
+
+  // If the user answered "y", then the first while loop would break and move to the second while loop that captured "y".
   int sign = 0;
   while ((ans == "y")) {
     vector <int> UsedCards;
