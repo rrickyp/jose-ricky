@@ -52,13 +52,16 @@ int main() {
   // If the user answered "y", then the first while loop would break and move to the second while loop that captured "y".
   int sign = 0;
   while ((ans == "y")) {
+    // initializing vector containers of integers.
     vector <int> UsedCards;
     vector <int> PlayerCards;
     vector <int> DealerCards;
     ShareCard(UsedCards, PlayerCards); //initialize card
     ShareCard(UsedCards, PlayerCards); //initialize card
     ShareCard(UsedCards, DealerCards); //initialize card
+    // Sorting player cards prior to printing
     sorted(PlayerCards);
+    // push_back(-1) used 
     DealerCards.push_back(-1);
     cout <<"Your Cards:"<<endl;
     PrintCard(PlayerCards);

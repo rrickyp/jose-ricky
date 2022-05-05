@@ -55,11 +55,10 @@ double MathQuestion(){
   // the return would be processed further on the NerdblackJack.cpp file and if the user have the true answer
   // then it will print the duration, otherwise user will lose.
   if(user_answer == true_ans){
-    cout << "User continue the game"<< endl;
+    cout << "You are correct!" << endl;
     return duration_double;
   }
   else{
-    cout << "User Lost" << endl;
     return 0;
   }
 }

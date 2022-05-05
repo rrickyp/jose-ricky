@@ -57,8 +57,9 @@ int CardsValue(vector <int> cards) {
   return total;
     
 }
+
 bool cmpcard(const int & a, const int & b) {
-  if (b%13>a%13) {
+  if ( b % 13 > a % 13 ) {
     return true;
   }
   return false;
@@ -67,17 +68,20 @@ void sorted(vector <int> & cards) {
   sort(cards.begin(), cards.end());
   sort(cards.begin(), cards.end(), cmpcard);
 }
+
 void PrintCard(vector <int> cards) {
   vector <ifstream*> fin;
   vector <string> txtFile;
   string line;
 
-  for(int i = 0;i<cards.size();i++) {
-    if(cards[i]==-1) {
+  for(int i = 0; i < cards.size();  i++) {
+    // -1 value was the result of NerdBlackJack.cpp DealerCards variable that pushed back.
+    // if the cards value was -1, then we print the NullCard (Back side of the card). 
+    if( cards[i] == -1 ) {
       txtFile.push_back("CardsPictures/back.txt");
       break;
     }
-    txtFile.push_back("CardsPictures/"+ to_string(cards[i])+".txt");
+    txtFile.push_back("CardsPictures/" + to_string(cards[i]) + ".txt");
   }
   for (int i = 0; i < cards.size();i++) {
     ifstream * f = new ifstream(txtFile[i], ios::in);
