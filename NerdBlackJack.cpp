@@ -4,8 +4,8 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
-#include "CardFeatures.h"
-#include "mathprob.h"
+#include "features_and_mathprob/CardFeatures.h"
+#include "features_and_mathprob/mathprob.h"
 using namespace std;
 
 
@@ -15,7 +15,7 @@ int main() {
   system("sleep 2");
   ifstream fin;
   system("clear");
-  fin.open("ASCII-NERD.txt");
+  fin.open("OtherData/ASCII-NERD.txt");
   string welcome;
 
   while (getline(fin, welcome)){
@@ -33,7 +33,7 @@ int main() {
     string rules;
     ifstream fiin;
     if (ans == "rules") {
-      fiin.open("Rules.txt");
+      fiin.open("OtherData/Rules.txt");
       while (getline(fiin, rules)) {
         cout << rules<<endl;
       }
@@ -60,7 +60,7 @@ int main() {
     bool answer;
     answer = HitOrStand();
     ifstream fin;
-    fin.open("topspeed.txt");
+    fin.open("OtherData/topspeed.txt");
     if (fin.fail()) {
       cout <<"File error"<<endl;
       exit(1);
@@ -144,7 +144,7 @@ int main() {
     }
     system("sleep 2");
     if (Topspeed>BestTime) {
-      ofstream fout("topspeed.txt");
+      ofstream fout("OtherData/topspeed.txt");
       if (fout.fail()) {
         cout <<"Error in file opening"<<endl;
         exit(1);
@@ -162,7 +162,7 @@ int main() {
       });
       string rules;
       if (ans == "rules") {
-        fiin.open("Rules.txt");
+        fiin.open("OtherData/Rules.txt");
         while(getline(fiin, rules)) {
           cout <<rules<<endl;
         }
