@@ -9,6 +9,7 @@ gameset: NerdBlackJack.o features_and_mathprob/CardFeatures.o features_and_mathp
 	g++ $(FLAGS) $^ -o $@
 game: gameset
 	./gameset
+	rm -f gameset NerdBlackJack.o CardFeatures.o mathprob.o gameset.o
 clean:
 	rm -f gameset NerdBlackJack.o CardFeatures.o mathprob.o gameset.o
 .PHONY: clean tar
