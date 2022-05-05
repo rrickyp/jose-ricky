@@ -73,7 +73,6 @@ void PrintCard(vector <int> cards) {
   vector <ifstream*> fin;
   vector <string> txtFile;
   string line;
-
   for(int i = 0; i < cards.size();  i++) {
     // -1 value was the result of NerdBlackJack.cpp DealerCards variable that pushed back.
     // if the cards value was -1, then we print the NullCard (Back side of the card). 
