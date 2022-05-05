@@ -130,9 +130,9 @@ int main() {
       cout << "Dealer's cards value is "<<CardsValue(DealerCards)<<endl;
       if (CardsValue(PlayerCards) > CardsValue(DealerCards) || CardsValue(DealerCards)>21) {   // assume true if Player wins
         if (CardsValue(PlayerCards) == 21) {
-          cout << "You got BlackJack"<<endl;
+          cout << "BlackJack!!"<<endl;
         }
-        cout <<"Congrats!! You won the game"<<endl;
+        cout <<"Congratulations!! You have emerged victorious"<<endl;
       }
       else if (CardsValue(PlayerCards) == CardsValue(DealerCards)) {
         cout <<"Game Tied, your cards have the same value as the dealer's"<<endl;

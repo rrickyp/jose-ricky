@@ -81,6 +81,7 @@ void PrintCard(vector <int> cards) {
       txtFile.push_back("CardsPictures/back.txt");
       break;
     }
+    // Created 
     txtFile.push_back("CardsPictures/" + to_string(cards[i]) + ".txt");
   }
   for (int i = 0; i < cards.size();i++) {
