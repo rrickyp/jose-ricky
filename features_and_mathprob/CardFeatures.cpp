@@ -6,49 +6,61 @@
 #include <fstream>
 using namespace std;
 
-
 void ShareCard(vector <int> &UsedCards, vector <int> &Cards) {
+  // Initializing random seed
   srand(time(NULL));
-  int card = rand()%52;
+  int card = rand() % 52;
+  // this while loop is used to prevent used cards to be shared again.
   while (find(UsedCards.begin(), UsedCards.end(), card) != UsedCards.end()) {
-    card = rand()%52;
+    card = rand() % 52;
   }
+  // If the new card already generated, then we push_back the card number
   UsedCards.push_back(card);
   Cards.push_back(card);
 }
 
-void DealerMove(vector <int> & UsedCards, vector <int> & Dealercards, vector <int> Playercards) {
-  while(CardsValue(Dealercards) < CardsValue(Playercards) || CardsValue(Dealercards)< 14) {
-    ShareCard(UsedCards, Dealercards);
-    sorted(Dealercards);
-    cout << "Dealer's Cards:"<<endl;
+void DealerMove(vector <int> &UsedCards, vector <int> &Dealercards, vector <int> Playercards) {
+  // This condition implies that when the dealer's card value was below the player's, then we draw the dealer's.
+  // Also, if the value of dealer's card was below 14, then we have to add Dealer's card.
+  while(CardsValue(Dealercards) < CardsValue(Playercards) || CardsValue(Dealercards) < 14) {
+    ShareCard( UsedCards, Dealercards );
+    sorted( Dealercards );
+    cout << "Dealer's Cards:" << endl;
     PrintCard(Dealercards);
     system("sleep 1");
     if (CardsValue(Dealercards) == 21) {
       break;
     }
-    cout<<endl;
+    cout << endl;
   }
 }
+
+
+// This function is used to return the value of given cards.
 int CardsValue(vector <int> cards) {
   int total = 0;
   int AceCount = 0;
-  for (int i = 0; i < cards.size();i++) {
-    if (cards[i]%13 == 0) {
+  // For loop to detect aces.
+  for (int i = 0; i < cards.size(); i++) {
+    if (cards[i] % 13 == 0) {
       AceCount++;
     }
   }
-  for (int i = cards.size()-1;i>=0;i--) {
-    int value = (cards[i]%13)+1;
-    if (cards[i]%13 == 10 || cards[i]%13 == 11 || cards[i]%13 == 12) {
+  // For loop used to count cards' value
+  for (int i = cards.size() - 1; i >= 0 ; i--) {
+    int value = ( cards[i] % 13 ) + 1;
+    // If the cards has value of 10 or 11 or 12, the value was set to be 10.
+    if (cards[i] % 13 == 10 || cards[i] % 13 == 11 || cards[i] % 13 == 12) {
       value = 10;
     }
-    else if (cards[i]%13 == 0) {
+    // If the cards value was 0, then we add it as 11.
+    else if (cards[i] % 13 == 0) {
       value = 11;
     }
     total = total + value;
   }
-  for (int i = 0; i<AceCount;i++) {
+  // Based on the number of aces exist in our cards, we simply substract 10 if the total was not 21.
+  for (int i = 0; i < AceCount; i++) {
     if (total <= 21) {
       break;
     }
@@ -58,12 +70,14 @@ int CardsValue(vector <int> cards) {
     
 }
 
+// This function used to compare cards.
 bool cmpcard(const int & a, const int & b) {
   if ( b % 13 > a % 13 ) {
     return true;
   }
   return false;
 }
+// This function is used to sort cards.
 void sorted(vector <int> & cards) {
   sort(cards.begin(), cards.end());
   sort(cards.begin(), cards.end(), cmpcard);
