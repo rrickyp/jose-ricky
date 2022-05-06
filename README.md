@@ -23,4 +23,7 @@ Code Requirement:
   3. Dynamic memory management --> we use vectors in storing cards, and calling cards from files.
   4. File input/output (e.g., for loading/saving game status) --> every time the game starts, there is a file that kept track of the fastest time a user can answer.
   5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, and CardFeatuers.cpp.
+
+Quick Start:
+  To start the game, user can simply type "make game" on the given directory.
   
