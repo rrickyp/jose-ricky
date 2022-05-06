@@ -25,5 +25,5 @@ Code Requirement:
   5. Program codes in multiple files --> we will divide the modules according to the features, such as, MathProblem, and CardFeatuers.cpp.
 
 Quick Start:
-  To start the game, user can simply type "make game" on the given directory.
+  To start the game, user can simply type "make game" on the CLI on the given directory.
   
